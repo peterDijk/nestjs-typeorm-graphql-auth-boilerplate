@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:10.3
+    environment:
+      POSTGRES_USER: development
+      POSTGRES_PASSWORD: development
+    ports:
+      - '5430:5432'
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres: ~

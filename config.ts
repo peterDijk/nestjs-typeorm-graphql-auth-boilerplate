@@ -11,12 +11,14 @@ const configs = {
     DEV: env === envDevelopmentName,
     // General
     NAME: process.env.APP_NAME || pkg.name,
-    TITLE: process.env.APP_TITLE || 'NestJS Boilerplate',
+    TITLE: process.env.APP_TITLE || pkg.title || 'NestJS Boilerplate',
     DESCRIPTION:
-      process.env.APP_DESCRIPTION || 'NestJS Boilerplate description',
+      process.env.APP_DESCRIPTION ||
+      pkg.description ||
+      'NestJS Boilerplate description',
     // API
     PREFIX: process.env.APP_PREFIX || 'v1',
-    VERSION: process.env.APP_VERSION || '1.0',
+    VERSION: process.env.APP_VERSION || '0.0.1',
     API_EXPLORER_PATH: process.env.APP_API_EXPLORER_PATH || '/api',
     // Server
     HOST: process.env.APP_HOST || '0.0.0.0',

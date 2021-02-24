@@ -29,7 +29,7 @@ const configs = {
     DB_PORT: '5430',
     DB_USER: 'development',
     DB_PASSWORD: 'development',
-    DB_DATABASE: 'postgres',
+    DB_DATABASE: 'byndies-sharing-local',
   },
   developtment: {},
   production: {
@@ -38,24 +38,5 @@ const configs = {
 };
 
 const config = { ...configs.base, ...configs[env] };
-
-config.getTypeOrmConfig = () => ({
-  type: config.DB_TYPE,
-  host: config.DB_HOST,
-  port: config.DB_PORT,
-  username: config.DB_USER,
-  password: config.DB_PASSWORD,
-  database: config.DB_DATABASE,
-
-  entities: ['**/*.entity{.ts,.js}'],
-
-  migrationsTableName: 'migration',
-
-  migrations: ['src/migration/*.ts'],
-
-  cli: {
-    migrationsDir: 'src/migration',
-  },
-});
 
 export default config;

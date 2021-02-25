@@ -22,6 +22,9 @@ $ npm install
 ```bash
 $ docker-compose up -d
 $ npm run migration:run
+
+# after adding model(s) or make changes to models, generate new migration:
+$ npm run migration:generate -- [migration-name]
 ```
 
 ## Running the app

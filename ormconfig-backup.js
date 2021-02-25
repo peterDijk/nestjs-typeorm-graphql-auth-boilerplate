@@ -1,3 +1,4 @@
+/* eslint-disable */
 // const CustomNamingStrategy = require('./src/__init__/db').CustomNamingStrategy;
 var config = require('./config.ts');
 
@@ -9,7 +10,7 @@ module.exports = {
   migrationsTableName: 'migration',
   entities: ['dist/**/*.model.js'],
   migrations: ['dist/src/database/migrations/*.js'],
-  namingStrategy: new CustomNamingStrategy(),
+  // namingStrategy: new CustomNamingStrategy(),
   synchronize: false,
   logging: true,
   cli: {

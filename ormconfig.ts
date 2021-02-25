@@ -34,16 +34,13 @@ export default {
   url:
     process.env.DATABASE_URL ||
     `postgres://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_DATABASE}`,
-  entities: ['**/*.entity{.ts,.js}'],
   migrationsTableName: 'migration',
-  migrations: ['src/migration/**/*.ts'],
-  // subscribers: ['src/subscriber/**/*.ts'],
+  entities: ['dist/**/*.model.js'],
+  migrations: ['dist/src/database/migrations/*.js'],
   namingStrategy: new CustomNamingStrategy(),
   synchronize: false,
   logging: true,
   cli: {
-    entitiesDir: 'src/entity',
     migrationsDir: 'src/migration',
-    // subscribersDir: 'src/subscriber',
   },
 };

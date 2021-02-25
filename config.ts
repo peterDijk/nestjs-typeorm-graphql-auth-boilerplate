@@ -30,6 +30,7 @@ const configs = {
     DB_USER: 'development',
     DB_PASSWORD: 'development',
     DB_DATABASE: 'byndies-sharing-local',
+    DB_URL: process.env.DATABASE_URL,
   },
   developtment: {},
   production: {

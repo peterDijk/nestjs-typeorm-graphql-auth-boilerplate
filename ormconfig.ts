@@ -32,7 +32,7 @@ class CustomNamingStrategy
 const SOURCE_PATH = config.ENV === 'production' ? 'dist/src' : 'src';
 
 const DB_URL = process.env.DATABASE_URL
-  ? `${process.env.DATABASE_URL}?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory`
+  ? `${process.env.DATABASE_URL}?sslmode=require`
   : null;
 
 export default {

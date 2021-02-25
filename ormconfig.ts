@@ -36,7 +36,7 @@ const DB_URL = process.env.DATABASE_URL ? `${process.env.DATABASE_URL}` : null;
 export default {
   type: config.DB_TYPE,
   url:
-    DB_URL ||
+    process.env.DATABASE_URL ||
     `postgres://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_DATABASE}`,
   migrationsTableName: 'migration',
   entities: [`${SOURCE_PATH}/**/*.model{.ts,.js}`],
@@ -44,6 +44,9 @@ export default {
   namingStrategy: new CustomNamingStrategy(),
   synchronize: false,
   logging: true,
+  ssl: config.ENV === 'production' && {
+    rejectUnauthorized: false,
+  },
   cli: {
     migrationsDir: 'src/migrations',
   },

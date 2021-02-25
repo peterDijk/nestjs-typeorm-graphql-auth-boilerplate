@@ -31,9 +31,7 @@ class CustomNamingStrategy
 
 const SOURCE_PATH = config.ENV === 'production' ? 'dist/src' : 'src';
 
-const DB_URL = process.env.DATABASE_URL
-  ? `${process.env.DATABASE_URL}?sslmode=require`
-  : null;
+const DB_URL = process.env.DATABASE_URL ? `${process.env.DATABASE_URL}` : null;
 
 export default {
   type: config.DB_TYPE,

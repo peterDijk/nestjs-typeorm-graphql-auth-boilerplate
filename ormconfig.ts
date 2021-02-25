@@ -42,7 +42,6 @@ export default {
   namingStrategy: new CustomNamingStrategy(),
   synchronize: false,
   logging: true,
-  ssl: config.ENV === 'production',
   cli: {
     migrationsDir: 'src/migrations',
   },

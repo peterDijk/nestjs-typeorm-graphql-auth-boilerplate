@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { HealthModel } from './health.model';
+import { HealthCheck as HealthCheckModel } from './health.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class HealthService {
   constructor(
-    @InjectRepository(HealthModel)
-    private healthRepository: Repository<HealthModel>,
+    @InjectRepository(HealthCheckModel)
+    private healthRepository: Repository<HealthCheckModel>,
   ) {}
 
-  create(): Promise<HealthModel> {
+  create(): Promise<HealthCheckModel> {
     return this.healthRepository.save({ message: 'health check ok' });
   }
 
-  findAll(): Promise<HealthModel[]> {
+  findAll(): Promise<HealthCheckModel[]> {
     return this.healthRepository.find();
   }
 
-  findOne(id: string): Promise<HealthModel> {
+  findOne(id: string): Promise<HealthCheckModel> {
     return this.healthRepository.findOne(id);
   }
 }

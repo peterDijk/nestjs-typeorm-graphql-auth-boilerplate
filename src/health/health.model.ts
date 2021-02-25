@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class HealthModel extends BaseEntity {
+export class HealthCheck extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

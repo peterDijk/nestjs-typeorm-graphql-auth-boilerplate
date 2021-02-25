@@ -35,8 +35,8 @@ export default {
     process.env.DATABASE_URL ||
     `postgres://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_DATABASE}`,
   migrationsTableName: 'migration',
-  entities: ['dist/**/*.model.js'],
-  migrations: ['dist/src/migrations/*.js'],
+  entities: ['./src/**/*.model.ts'],
+  migrations: ['./src/migrations/*.ts'],
   namingStrategy: new CustomNamingStrategy(),
   synchronize: false,
   logging: true,

@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: development
       POSTGRES_DB: byndies-sharing-local
     ports:
-      - '5430:5432'
+      - '5432:5432'
     volumes:
       - postgres:/var/lib/postgresql/data
     restart: always

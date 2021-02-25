@@ -26,7 +26,7 @@ const configs = {
     // Database
     DB_TYPE: 'postgres',
     DB_HOST: '0.0.0.0',
-    DB_PORT: '5430',
+    DB_PORT: '5432',
     DB_USER: 'development',
     DB_PASSWORD: 'development',
     DB_DATABASE: 'byndies-sharing-local',

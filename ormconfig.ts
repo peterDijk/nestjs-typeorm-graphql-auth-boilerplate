@@ -38,7 +38,7 @@ const DB_URL = process.env.DATABASE_URL
 export default {
   type: config.DB_TYPE,
   url:
-    process.env.DB_URL ||
+    DB_URL ||
     `postgres://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}:${config.DB_PORT}/${config.DB_DATABASE}`,
   migrationsTableName: 'migration',
   entities: [`${SOURCE_PATH}/**/*.model{.ts,.js}`],

@@ -14,37 +14,37 @@
 ## Installation
 
 ```bash
-$ yarn install
+$ npm install
 ```
 
 ## Set up local database
 
 ```bash
 $ docker-compose up -d
-$ yarn migration:run
+$ npm run migration:run
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ yarn start
+$ npm start
 
 # production mode
-$ NODE_ENV=production yarn start:prod
+$ NODE_ENV=production npm run start:prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ yarn test
+$ npm run test
 
 # e2e tests
-$ yarn test:e2e
+$ npm run test:e2e
 
 # test coverage
-$ yarn test:cov
+$ npm run test:cov
 ```
 
 ## Notes

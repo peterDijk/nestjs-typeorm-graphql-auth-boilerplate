@@ -19,10 +19,18 @@ const configs = {
     // API
     PREFIX: process.env.APP_PREFIX || 'v1',
     VERSION: process.env.APP_VERSION || '0.0.1',
-    API_EXPLORER_PATH: process.env.APP_API_EXPLORER_PATH || '/api',
+    API_EXPLORER_PATH: process.env.APP_API_EXPLORER_PATH || '/api-explorer',
     // Server
     HOST: process.env.APP_HOST || '0.0.0.0',
     PORT: process.env.PORT || 3000,
+    // Database
+    DB_TYPE: 'postgres',
+    DB_HOST: '0.0.0.0',
+    DB_PORT: '5432',
+    DB_USER: 'development',
+    DB_PASSWORD: 'development',
+    DB_DATABASE: 'byndies-sharing-local',
+    DB_URL: process.env.DATABASE_URL,
   },
   developtment: {},
   production: {

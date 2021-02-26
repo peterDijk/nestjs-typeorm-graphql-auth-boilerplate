@@ -58,6 +58,9 @@ https://byndies-sharing-server.herokuapp.com/
 REST API Explorer
 https://byndies-sharing-server.herokuapp.com/api-explorer/
 
+A nice and clean Postgres client app I like is Postico
+[link]https://eggerapps.at/postico/[/link]
+
 - GET /health as first test route, and POST as test to store record in database
 - Now as RESTful API only. With Nestjs application is setup modules and services. Graphql can be added (@nestjs/graphql) the resolver can use the same services. So easy to plugin graphql now
 

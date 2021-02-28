@@ -1,5 +1,5 @@
 import { Inject, Logger, UseGuards } from '@nestjs/common';
-import { Query, Resolver } from '@nestjs/graphql';
+import { Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CurrentUser, GqlAuthGuard } from '../auth/graphql.guard';
 import { User } from '../users/user.model';
 import { UsersService } from '../users/users.service';
@@ -18,7 +18,12 @@ export class HealthCheckResolver {
   @UseGuards(GqlAuthGuard)
   async healthchecks(@CurrentUser() user: User): Promise<HealthCheck[]> {
     const healths = await this.healthService.findAll();
-    this.logger.log({ user, healths }, 'gethealthchecks');
     return healths;
+  }
+
+  @Mutation((returns) => HealthCheck)
+  @UseGuards(GqlAuthGuard)
+  async addHealthCheck(@CurrentUser() user: User): Promise<HealthCheck> {
+    return await this.healthService.create(user);
   }
 }

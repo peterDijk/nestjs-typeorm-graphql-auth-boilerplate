@@ -22,9 +22,9 @@ export class HealthCheck extends BaseEntity {
 
   @Field()
   @Column('timestamptz', { nullable: false, default: () => `now()` })
-  dateCreated: Date;
+  dateCreated?: Date;
 
   @Field()
   @ManyToOne((type) => User)
-  user: User;
+  user?: User;
 }

@@ -48,7 +48,7 @@ export class UsersService {
     });
   }
 
-  async create(userDto: CreateUserDto): Promise<UserDto> {
+  async create(userDto: CreateUserDto): Promise<User> {
     const { password, email, username } = userDto;
 
     // check if the user exists in the db
@@ -68,11 +68,7 @@ export class UsersService {
 
       await this.userRepo.save(user);
 
-      return {
-        id: user.id,
-        username: user.username,
-        email: user.email,
-      };
+      return user;
     } catch (err) {
       throw Error(err);
     }

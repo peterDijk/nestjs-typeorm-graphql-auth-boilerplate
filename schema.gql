@@ -24,3 +24,8 @@ scalar DateTime
 type Query {
   healthchecks: [HealthCheck!]!
 }
+
+type Mutation {
+  register(password: String!, email: String!, username: String!): User!
+  addHealthCheck: HealthCheck!
+}

@@ -1,9 +1,11 @@
+import { User } from '../users/user.model';
 import {
   Entity,
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
   Timestamp,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -16,4 +18,7 @@ export class HealthCheck extends BaseEntity {
 
   @Column('timestamptz', { nullable: false, default: () => `now()` })
   dateCreated: Timestamp;
+
+  @ManyToOne((type) => User)
+  user: User;
 }

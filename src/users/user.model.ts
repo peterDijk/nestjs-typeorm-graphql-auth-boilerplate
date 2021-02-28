@@ -6,6 +6,7 @@ import {
   BeforeInsert,
 } from 'typeorm';
 import { IsString, MinLength, IsEmail } from 'class-validator';
+import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import config from '../../config';
 
@@ -31,6 +32,7 @@ export class User extends BaseEntity {
 
   @IsString()
   @MinLength(config.MIN_PW_LENGTH)
+  @Exclude({ toPlainOnly: true })
   @Column({
     type: 'varchar',
     nullable: false,

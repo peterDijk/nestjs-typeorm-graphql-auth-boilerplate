@@ -1,4 +1,4 @@
-## Byndies Sharing Server
+## NestJS TypeORM Auth Boilerplate
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
@@ -52,12 +52,6 @@ $ npm run test:cov
 
 ## Notes
 
-development public url:
-https://byndies-sharing-server.herokuapp.com/
-
-REST API Explorer
-https://byndies-sharing-server.herokuapp.com/api-explorer/
-
 A nice and clean Postgres client app I like is Postico
 https://eggerapps.at/postico/
 
@@ -66,7 +60,8 @@ https://eggerapps.at/postico/
 
 ### TODO
 
-- Add Authentification layer. On succesful login a JWT token is returned. In all following requests add the token to the header. Authentification decorator will be added to routes/ resolvers wich will make these endpoints protected
+:check: Add Authentification layer. On succesful login a JWT token is returned. In all following requests add the token to the header. Authentification decorator will be added to routes/ resolvers wich will make these endpoints protected
+
 - Add Graphql layer
 - all setup now and ready for adding logic for the Byndies Sharing app
 

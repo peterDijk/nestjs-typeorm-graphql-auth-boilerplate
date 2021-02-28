@@ -1,6 +1,7 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { HealthService } from './health.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('health')
 @ApiTags('Health check')
@@ -18,6 +19,7 @@ export class HealthController {
     description: 'Store health check - will be authorized path',
   })
   @Post()
+  @UseGuards(AuthGuard())
   createHealth() {
     return this.healthService.create();
   }

@@ -1,5 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { CreateUserDto } from '../users/user.dto';
 import { User } from '../users/user.model';
 import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
@@ -16,7 +17,10 @@ export class AuthResolver {
     @Args('username') username: string,
     @Args('email') email: string,
     @Args('password') password: string,
+    // @Args('user', { type: () => CreateUserDto }) user: CreateUserDto,
   ): Promise<User> {
-    return await this.authService.register({ username, email, password });
+    const userDto: CreateUserDto = { username, email, password };
+
+    return await this.authService.register(userDto);
   }
 }

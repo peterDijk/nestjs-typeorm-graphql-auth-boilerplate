@@ -3,12 +3,17 @@ import { Module } from '@nestjs/common';
 import { HealthService } from './health.service';
 import { HealthCheck } from './health.model';
 import { HealthController } from './health.controller';
+import { PassportModule } from '@nestjs/passport';
+import { AuthModule } from '../auth/auth.module';
+import { User } from '../users/user.model';
 // import { HealthResolver } from './health.resolver';
 
 @Module({
   imports: [
     // forwardRef(() => xxModule) // for relations
-    TypeOrmModule.forFeature([HealthCheck]),
+    TypeOrmModule.forFeature([HealthCheck, User]),
+    PassportModule,
+    AuthModule,
   ],
   controllers: [HealthController],
   providers: [

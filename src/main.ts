@@ -1,6 +1,6 @@
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
+import { ClassSerializerInterceptor, Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import config from '../config';
@@ -9,7 +9,7 @@ async function bootstrap() {
   const logger = new Logger('bootstrap');
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix(config.PREFIX);
-
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
   // Swagger.io setup
   const documentOptions = new DocumentBuilder()
     .setTitle(config.TITLE)

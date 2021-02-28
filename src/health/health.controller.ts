@@ -1,6 +1,8 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { HealthService } from './health.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { UserDto } from 'src/users/user.dto';
 
 @Controller('health')
 @ApiTags('Health check')
@@ -13,12 +15,22 @@ export class HealthController {
     return this.healthService.get();
   }
 
+  @ApiResponse({ status: 200, description: 'List all health check records' })
+  @Get('all')
+  @UseGuards(JwtAuthGuard)
+  async getAllHealth() {
+    return await this.healthService.findAll();
+  }
+
   @ApiResponse({
     status: 201,
-    description: 'Store health check - will be authorized path',
+    description: 'Store health check - Authorized',
   })
   @Post()
-  createHealth() {
-    return this.healthService.create();
+  @UseGuards(JwtAuthGuard)
+  createHealth(@Request() req: any) {
+    const user = req.user as UserDto;
+
+    return this.healthService.create(user);
   }
 }

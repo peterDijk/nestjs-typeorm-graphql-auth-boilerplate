@@ -31,10 +31,13 @@ const configs = {
     DB_PASSWORD: 'development',
     DB_DATABASE: 'byndies-sharing-local',
     DB_URL: process.env.DATABASE_URL,
+    // App settings
+    MIN_PW_LENGTH: 3,
   },
   developtment: {},
   production: {
     PORT: process.env.PORT || 7000,
+    MIN_PW_LENGTH: 8,
   },
 };
 

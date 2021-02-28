@@ -15,7 +15,7 @@ export class AuthResolver {
 
   @Mutation((returns) => User)
   async register(
-    @Args('user', { type: () => CreateUserDto }) userDto: CreateUserDto,
+    @Args('userData', { type: () => CreateUserDto }) userDto: CreateUserDto,
   ): Promise<User> {
     return await this.authService.register(userDto);
   }

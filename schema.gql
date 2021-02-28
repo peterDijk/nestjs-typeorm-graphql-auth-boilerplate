@@ -26,12 +26,17 @@ type LoginStatus {
   accessToken: String!
 }
 
+type HealthCheckResponse {
+  message: String!
+}
+
 type Query {
-  healthchecks: [HealthCheck!]!
+  healthcheck: HealthCheckResponse!
+  allHealthChecks: [HealthCheck!]!
 }
 
 type Mutation {
-  register(user: CreateUserDto!): User!
+  register(userData: CreateUserDto!): User!
   login(password: String!, username: String!): LoginStatus!
   addHealthCheck: HealthCheck!
 }

@@ -32,12 +32,16 @@ type HealthCheckResponse {
 
 type Query {
   healthcheck: HealthCheckResponse!
+
+  """Authorized"""
   allHealthChecks: [HealthCheck!]!
 }
 
 type Mutation {
   register(userData: CreateUserDto!): User!
   login(password: String!, username: String!): LoginStatus!
+
+  """Authorized"""
   addHealthCheck: HealthCheck!
 }
 

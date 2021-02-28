@@ -22,14 +22,14 @@ export class HealthCheckResolver {
     };
   }
 
-  @Query((returns) => [HealthCheck])
+  @Query((returns) => [HealthCheck], { description: 'Authorized' })
   @UseGuards(GqlAuthGuard)
   async allHealthChecks(@CurrentUser() user: User): Promise<HealthCheck[]> {
     const healths = await this.healthService.findAll();
     return healths;
   }
 
-  @Mutation((returns) => HealthCheck)
+  @Mutation((returns) => HealthCheck, { description: 'Authorized' })
   @UseGuards(GqlAuthGuard)
   async addHealthCheck(@CurrentUser() user: User): Promise<HealthCheck> {
     return await this.healthService.create(user);

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { HealthService } from './health.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('health')
 @ApiTags('Health check')
@@ -19,7 +20,7 @@ export class HealthController {
     description: 'Store health check - will be authorized path',
   })
   @Post()
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   createHealth(@Request() req: any) {
     console.log({ headers: req.headers });
     return this.healthService.create();

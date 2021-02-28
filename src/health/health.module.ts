@@ -11,7 +11,7 @@ import { AuthModule } from '../auth/auth.module';
   imports: [
     // forwardRef(() => xxModule) // for relations
     TypeOrmModule.forFeature([HealthCheck]),
-    // PassportModule.register({ defaultStrategy: 'jwt' }),
+    PassportModule,
     AuthModule,
   ],
   controllers: [HealthController],

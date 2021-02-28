@@ -9,11 +9,7 @@ import { JwtStrategy } from './jwt.strategy';
 @Module({
   imports: [
     UsersModule,
-    PassportModule.register({
-      defaultStrategy: 'jwt',
-      property: 'user',
-      session: false,
-    }),
+    PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: {

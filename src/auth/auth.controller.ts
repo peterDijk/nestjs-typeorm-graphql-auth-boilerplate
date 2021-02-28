@@ -17,6 +17,15 @@ export class AuthController {
   public async register(
     @Body() createUserDto: CreateUserDto,
   ): Promise<RegistrationStatus> {
+    const { email, password } = createUserDto;
+
+    if (!email || !password) {
+      throw new HttpException(
+        'provide both email and password',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const result: RegistrationStatus = await this.authService.register(
       createUserDto,
     );

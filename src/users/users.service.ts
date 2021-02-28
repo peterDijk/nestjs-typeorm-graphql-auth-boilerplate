@@ -57,16 +57,20 @@ export class UsersService {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
     }
 
-    const user: User = await this.userRepo.create({
-      password,
-      email,
-    });
+    try {
+      const user: User = await this.userRepo.create({
+        password,
+        email,
+      });
 
-    await this.userRepo.save(user);
+      await this.userRepo.save(user);
 
-    return {
-      id: user.id,
-      email: user.email,
-    };
+      return {
+        id: user.id,
+        email: user.email,
+      };
+    } catch (err) {
+      throw Error(err);
+    }
   }
 }

@@ -6,7 +6,7 @@ import {
   BeforeInsert,
 } from 'typeorm';
 import { IsString, MinLength, IsEmail } from 'class-validator';
-import { hash } from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import config from '../../config';
 
 @Entity()
@@ -32,7 +32,7 @@ export class User extends BaseEntity {
 
   @BeforeInsert() async hashPassword() {
     try {
-      this.password = await hash(this.password, 10);
+      this.password = await bcrypt.hash(this.password, 10);
     } catch (err) {
       throw Error('error hashing password');
     }

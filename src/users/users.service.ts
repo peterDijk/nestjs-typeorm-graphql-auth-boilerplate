@@ -6,7 +6,7 @@ import { CreateUserDto, LoginUserDto, UserDto } from './user.dto';
 import { compare } from 'bcrypt';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     @InjectRepository(User)
     private userRepo: Repository<User>,

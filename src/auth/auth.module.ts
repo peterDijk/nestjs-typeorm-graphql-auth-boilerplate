@@ -11,7 +11,7 @@ import { JwtStrategy } from './jwt.strategy';
     UsersModule,
     PassportModule.register({
       defaultStrategy: 'jwt',
-      property: 'email',
+      property: 'user',
       session: false,
     }),
     JwtModule.register({

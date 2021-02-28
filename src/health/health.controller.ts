@@ -1,4 +1,4 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { HealthService } from './health.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -20,7 +20,8 @@ export class HealthController {
   })
   @Post()
   @UseGuards(AuthGuard())
-  createHealth() {
+  createHealth(@Request() req: any) {
+    console.log({ headers: req.headers });
     return this.healthService.create();
   }
 }

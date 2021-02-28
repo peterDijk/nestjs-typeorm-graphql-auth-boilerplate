@@ -17,11 +17,12 @@ export class UsersService {
     return {
       id: user.id,
       email: user.email,
+      username: user.username,
     };
   }
 
-  async findByLogin({ email, password }: LoginUserDto): Promise<UserDto> {
-    const user = await this.userRepo.findOne({ where: { email } });
+  async findByLogin({ username, password }: LoginUserDto): Promise<UserDto> {
+    const user = await this.userRepo.findOne({ where: { username } });
 
     if (!user) {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
@@ -37,21 +38,22 @@ export class UsersService {
     return {
       id: user.id,
       email: user.email,
+      username: user.username,
     };
   }
 
-  async findByPayload({ email }: { email: string }): Promise<UserDto> {
+  async findByPayload({ username }: { username: string }): Promise<UserDto> {
     return await this.findOne({
-      where: { email },
+      where: { username },
     });
   }
 
   async create(userDto: CreateUserDto): Promise<UserDto> {
-    const { password, email } = userDto;
+    const { password, email, username } = userDto;
 
     // check if the user exists in the db
     const userInDb = await this.userRepo.findOne({
-      where: { email },
+      where: { username }, // TODO: check email as well
     });
     if (userInDb) {
       throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
@@ -59,6 +61,7 @@ export class UsersService {
 
     try {
       const user: User = await this.userRepo.create({
+        username,
         password,
         email,
       });
@@ -67,6 +70,7 @@ export class UsersService {
 
       return {
         id: user.id,
+        username: user.username,
         email: user.email,
       };
     } catch (err) {

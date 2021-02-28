@@ -5,6 +5,6 @@ import { HealthModule } from './health/health.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(TypeOrmConfig), HealthModule, AuthModule],
+  imports: [AuthModule, HealthModule, TypeOrmModule.forRoot(TypeOrmConfig)],
 })
 export class AppModule {}

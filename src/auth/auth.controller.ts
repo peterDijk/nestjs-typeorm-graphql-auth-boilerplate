@@ -17,11 +17,11 @@ export class AuthController {
   public async register(
     @Body() createUserDto: CreateUserDto,
   ): Promise<RegistrationStatus> {
-    const { email, password } = createUserDto;
+    const { email, username, password } = createUserDto;
 
-    if (!email || !password) {
+    if (!email || !password || !username) {
       throw new HttpException(
-        'provide both email and password',
+        'provide both username, email and password',
         HttpStatus.BAD_REQUEST,
       );
     }

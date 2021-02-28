@@ -1,0 +1,52 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String!
+  username: String!
+  email: String!
+  password: String!
+}
+
+type HealthCheck {
+  id: Float!
+  message: String!
+  dateCreated: DateTime!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type LoginStatus {
+  email: String!
+  accessToken: String!
+}
+
+type HealthCheckResponse {
+  message: String!
+}
+
+type Query {
+  healthcheck: HealthCheckResponse!
+
+  """Authorized"""
+  allHealthChecks: [HealthCheck!]!
+}
+
+type Mutation {
+  register(userData: CreateUserDto!): User!
+  login(password: String!, username: String!): LoginStatus!
+
+  """Authorized"""
+  addHealthCheck: HealthCheck!
+}
+
+input CreateUserDto {
+  username: String!
+  email: String!
+  password: String!
+}

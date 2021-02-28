@@ -5,6 +5,7 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
+import { User } from 'src/users/user.model';
 import { CreateUserDto, LoginUserDto } from '../users/user.dto';
 import { LoginStatus, RegistrationStatus } from './auth.dto';
 import { AuthService } from './auth.service';
@@ -14,9 +15,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  public async register(
-    @Body() createUserDto: CreateUserDto,
-  ): Promise<RegistrationStatus> {
+  public async register(@Body() createUserDto: CreateUserDto): Promise<User> {
     const { email, username, password } = createUserDto;
 
     if (!email || !password || !username) {
@@ -26,13 +25,11 @@ export class AuthController {
       );
     }
 
-    const result: RegistrationStatus = await this.authService.register(
-      createUserDto,
-    );
-    if (!result.success) {
-      throw new HttpException(result.message, HttpStatus.BAD_REQUEST);
+    try {
+      return await this.authService.register(createUserDto);
+    } catch (err) {
+      throw new HttpException('registration error', HttpStatus.BAD_REQUEST);
     }
-    return result;
   }
 
   @Post('login')

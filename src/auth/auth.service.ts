@@ -30,11 +30,11 @@ export class AuthService {
 
     return {
       email: user.email,
-      ...token,
+      accessToken: token.accessToken,
     };
   }
 
-  private _createToken({ username }: UserDto): any {
+  private _createToken({ username }: UserDto): { accessToken: string } {
     const user: JwtPayload = { username };
     const accessToken = this.jwtService.sign(user);
     return {

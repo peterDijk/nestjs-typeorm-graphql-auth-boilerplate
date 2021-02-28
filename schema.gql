@@ -31,7 +31,13 @@ type Query {
 }
 
 type Mutation {
-  register(password: String!, email: String!, username: String!): User!
+  register(user: CreateUserDto!): User!
   login(password: String!, username: String!): LoginStatus!
   addHealthCheck: HealthCheck!
+}
+
+input CreateUserDto {
+  username: String!
+  email: String!
+  password: String!
 }

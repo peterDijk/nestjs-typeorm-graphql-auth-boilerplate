@@ -37,6 +37,22 @@ $ npm start
 $ NODE_ENV=production npm run start:prod
 ```
 
+## GraphQL
+
+for explorer:
+
+- go to [app-url]/graphql
+- register, login, copy token from response
+- set Http Headers:
+
+```
+{
+    "Authorization": "Bearer [token]"
+}
+```
+
+- you now have access to protected queries/ mutations
+
 ## Test
 
 ```bash

@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { User } from 'src/users/user.model';
 import { CreateUserDto, LoginUserDto } from '../users/user.dto';
-import { LoginStatus, RegistrationStatus } from './auth.dto';
+import { LoginStatus } from './auth.dto';
 import { AuthService } from './auth.service';
 
 @Controller('auth')

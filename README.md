@@ -13,8 +13,23 @@
 
 ## Installation
 
+create .env file with this content
+
 ```bash
-$ npm install
+DIR_DATA_PATH="$PWD"
+DB_TYPE=postgres
+DB_CREDENTIALS_USERNAME=development
+DB_CREDENTIALS_PASSWORD=development
+DB_DATABASE=nestjs-boilerplate
+DB_PORT=3306
+DB_HOSTNAME=nestjs-boiler-db
+CONTAINER_COMMAND="npm run start"
+CONTAINER_SCALE="1"
+CONTAINER_PORT=3000
+APP_HOST=localhost
+APP_PORT=8080
+GQL_PLAYGROUND=enabled
+JWT_SECRET=secret
 ```
 
 ## Set up local database

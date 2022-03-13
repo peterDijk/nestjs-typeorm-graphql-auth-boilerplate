@@ -26,9 +26,9 @@ async function bootstrap() {
   // Swagger.io setup
   const port = config.PORT || 4000;
   await app.listen(port, () => {
-    logger.log(`Server listening on port ${port}`);
+    logger.log(`Server listening on port ${config.EXT_PORT}`);
     logger.log(
-      `API Explorer available on port ${config.PORT}${config.API_EXPLORER_PATH}`,
+      `API Explorer available on port ${config.EXT_PORT}${config.API_EXPLORER_PATH}`,
     );
   });
 }

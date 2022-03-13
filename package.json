@@ -1,8 +1,8 @@
 {
-  "name": "byndies-sharing-server",
+  "name": "nestjs-auth-graphql-boilerplate",
   "version": "0.0.1",
-  "title": "Byndies Sharing Server",
-  "description": "Byndies Sharing Server description",
+  "title": "NestJS Boilerplate with Auth and Graphql/REST",
+  "description": "description",
   "author": "petervandijk@gmailcom, ...",
   "private": true,
   "license": "UNLICENSED",

@@ -30,6 +30,7 @@ APP_HOST=localhost
 APP_PORT=8080
 GQL_PLAYGROUND=enabled
 JWT_SECRET=secret
+EXPIRES_IN=1d
 ```
 
 ## Set up local database

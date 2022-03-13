@@ -22,21 +22,25 @@ const configs = {
     API_EXPLORER_PATH: process.env.APP_API_EXPLORER_PATH || '/api-explorer',
     // Server
     HOST: process.env.APP_HOST || '0.0.0.0',
-    PORT: process.env.PORT || 3000,
+    PORT: process.env.CONTAINER_PORT || 3000, // internal container port
+    EXT_PORT: process.env.APP_PORT,
     // Database
-    DB_TYPE: 'postgres',
-    DB_HOST: '0.0.0.0',
-    DB_PORT: '5432',
-    DB_USER: 'development',
-    DB_PASSWORD: 'development',
-    DB_DATABASE: 'byndies-sharing-local',
-    DB_URL: process.env.DATABASE_URL,
+    DB_SETTINGS: {
+      hostname: process.env.DB_HOSTNAME,
+      port: process.env.DB_PORT,
+      credentials: {
+        username: process.env.DB_CREDENTIALS_USERNAME,
+        password: process.env.DB_CREDENTIALS_PASSWORD,
+      },
+      type: process.env.DB_TYPE,
+      database: process.env.DB_DATABASE,
+    },
     // App settings
     MIN_PW_LENGTH: 3,
   },
   developtment: {},
   production: {
-    PORT: process.env.PORT || 7000,
+    PORT: process.env.APP_PORT || 7000,
     MIN_PW_LENGTH: 8,
   },
 };

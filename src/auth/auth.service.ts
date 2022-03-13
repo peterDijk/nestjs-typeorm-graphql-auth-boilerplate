@@ -13,7 +13,6 @@ export class AuthService {
   ) {}
 
   async register(userDto: CreateUserDto): Promise<User> {
-    console.log({ userDto });
     try {
       return await this.usersService.create(userDto);
     } catch (err) {

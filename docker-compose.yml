@@ -1,17 +1,58 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:10.3
-    container_name: postgres
-    environment:
-      POSTGRES_USER: development
-      POSTGRES_PASSWORD: development
-      POSTGRES_DB: byndies-sharing-local
-    ports:
-      - '5432:5432'
-    volumes:
-      - postgres:/var/lib/postgresql/data
+  nestjs-boiler-db:
+    container_name: nestjs-boiler-db
+    image: postgres
     restart: always
+    environment:
+      POSTGRES_USER: ${DB_CREDENTIALS_USERNAME}
+      POSTGRES_PASSWORD: ${DB_CREDENTIALS_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+      PGPORT: ${DB_PORT}
+    networks:
+      - backend
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - type: volume
+        source: db-volume-data
+        target: /var/lib/db
+
+  nestjs-boiler:
+    container_name: nestjs-boiler
+    build:
+      context: '.'
+    env_file:
+      - ./.env
+    command: ${CONTAINER_COMMAND}
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: ${CONTAINER_SCALE}
+      # above is ignored by dc up and dc run (only when deploy to swarm with docker stack deploy)
+    depends_on:
+      - nestjs-boiler-db
+      # service wont be started before this service is running
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:7070']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    ports:
+      - '${APP_PORT}:${CONTAINER_PORT}'
+    volumes:
+      - './src:/app/src'
+    links:
+      - nestjs-boiler-db
+      # by default, any service can reach any other service at that service’s name.
+    networks:
+      - backend
+
 volumes:
-  postgres: ~
+  db-volume-data:
+
+networks:
+  backend:
+    driver: bridge

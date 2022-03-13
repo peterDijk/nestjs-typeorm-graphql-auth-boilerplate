@@ -36,18 +36,19 @@ EXPIRES_IN=1d
 ## Set up local database
 
 ```bash
-$ docker-compose up -d
-$ npm run migration:run
+$ docker compose build
+$ docker compose up -d
 
 # after adding model(s) or make changes to models, generate new migration:
-$ npm run migration:generate -- [migration-name]
+# (do this inside the container to be able to make use of Docker's internal network and hostnames)
+$ docker compose exec nestjs-boiler npm run migration:generate -- [migration-name]
 ```
 
 ## Running the app
 
 ```bash
 # development
-$ npm start
+$ docker compose up -d
 
 # production mode
 $ NODE_ENV=production npm run start:prod
